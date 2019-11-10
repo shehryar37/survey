@@ -1,0 +1,92 @@
+﻿@model SurveyProject.tblStudent
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <!-- These two are hidden because we don't want the user to be able to edit them at all -->
+    @Html.HiddenFor(model => model.StudentID)
+    @Html.HiddenFor(model => model.StudentAdmissionDate)
+
+    <div class="card">
+        <div class="header">
+            <h2>Edit</h2>
+        </div>
+        <div class="body clearfix">
+            <div class="col-lg-12">
+                <!-- Name -->
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>Name</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-line">
+                            @Html.EditorFor(model => model.StudentName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.StudentName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-line">
+                            @Html.EditorFor(model => model.StudentEmail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.StudentEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section -->
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>Section</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-line">
+                            @Html.DropDownList("SectionID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SectionID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>Gender</label>
+                    </div>
+                    <div class="col-md-10">
+
+                        @Html.RadioButtonFor(model => model.StudentGender, "M", new { id = "rMale", @class = "with-gap radio-col-blue" })
+                        <label for="rMale">Male</label>
+                        @Html.RadioButtonFor(model => model.StudentGender, "F", new { id = "rFemale", @class = "with-gap radio-col-blue" })
+                        <label for="rFemale">Female</label>
+
+                    </div>
+                </div>
+
+                <!-- Back and Submit Buttons -->
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-block bg-white col-black waves-effect" })
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                        <input type="submit" value="Save" class="btn btn-block bg-blue waves-effect" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,68 @@
+﻿@model SurveyProject.tblCompWinner
+
+@{
+    ViewBag.Title = "Select Winner";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+    <div class="card">
+        <div class="header">
+            <h2>Select Winner</h2>
+        </div>
+        <div class="body clearfix">
+            <div class="col-lg-12">
+                <!-- First Winner -->
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>First Winner</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-line">
+                            @Html.DropDownList("FirstWinner", null, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Second Winner -->
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>Second Winner</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-line">
+                            @Html.DropDownList("SecondWinner", null, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Third Winner -->
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>Third Winner</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-line">
+                            @Html.DropDownList("ThirdWinner", null, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back and Mark Winner button -->
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-block bg-white col-black waves-effect" })
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                        <input type="submit" value="Mark Winner" class="btn btn-block bg-blue waves-effect" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}

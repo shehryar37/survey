@@ -1,0 +1,78 @@
+﻿@model SurveyProject.tblFAQ
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="card">
+        <div class="header">
+            <h2>Create</h2>
+        </div>
+        <div class="body clearfix">
+            <div class="col-lg-12">
+
+
+
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label>Question</label>
+                    </div>
+
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <div class="form-line">
+
+                            @Html.TextAreaFor(model => model.FAQQuestion, new  { @class = "form-control no-resize auto-growth" ,
+                           rows ="1" ,
+                           style="overflow: hidden; overflow-wrap: breakword; height:32px;"  })
+
+                            @Html.ValidationMessageFor(model => model.FAQQuestion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label>Answer</label>
+                    </div>
+
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <div class="form-line">
+                            @Html.TextAreaFor(model => model.FAQAnswer, new  { @class = "form-control no - resize auto - growth" ,
+                           rows = "1",
+                           style = "overflow: hidden; overflow-wrap: breakword; height:32px;"
+                       } )
+                            @Html.ValidationMessageFor(model => model.FAQAnswer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                
+                    
+
+                    <div class="form-group">
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                            <input type="submit" value="Create" class="btn btn-block bg-white col-black waves-effect" />
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-block bg-blue waves-effect" })
+                        </div>
+                    </div>
+
+
+
+
+
+
+                
+            </div>
+        </div>
+    </div>
+}
+

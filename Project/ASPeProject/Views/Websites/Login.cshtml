@@ -1,0 +1,78 @@
+﻿@model SurveyProject.tblUser
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+@using (@Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <section class="dento-contact-area mt-50 mb-100">
+        <div class="container">
+            <div class="row">
+                <!-- Information -->
+                <div class="col-12 col-md-4">
+                    <div class="contact-information">
+                        <h5>No Account?</h5>
+                        <p>
+                            <a href="~/Websites/Register">Click Here</a> to go to the registration page.
+                        </p>
+
+                        <hr />
+                        <h5>Help</h5>
+                        <p>
+                            If you are having any trouble, feel free to visit the FAQ or Contact Us
+                            if you have any further queries.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Login Form -->
+                <div class="col-12 col-md-8">
+                    <div class="contact-form">
+                        <div class="section-heading">
+                            <h2>Login</h2>
+                            <div class="line"></div>
+                        </div>
+
+                        <form>
+                            <!-- Student Register Page -->
+                            <div class="row">
+                                <!-- Username -->
+                                <div class="col-lg-12">
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control mb-30", placeholder = "Username", required = "required" } })
+                                </div>
+
+                                <!-- Password -->
+                                <div class="col-lg-12">
+                                    @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control mb-30", placeholder = "Password", type = "password", required = "required" } })
+                                </div>
+
+                                <!-- Login button -->
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                                    <button type="submit" class="btn dento-btn">
+                                        Login
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@section Banner{
+    <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url(img/bg-img/12.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <h2 class="title">Login</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+}

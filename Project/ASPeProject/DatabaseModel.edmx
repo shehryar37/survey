@@ -1,0 +1,1104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SurveyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdminName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AdminCreationDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblClass">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportingDatetime" Type="datetime" />
+          <Property Name="ClassActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCompetition">
+          <Key>
+            <PropertyRef Name="CompID" />
+          </Key>
+          <Property Name="CompID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompActive" Type="bit" Nullable="false" />
+          <Property Name="UserTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCompParticipant">
+          <Key>
+            <PropertyRef Name="CompParticID" />
+          </Key>
+          <Property Name="CompParticID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="CompParticName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCompWinner">
+          <Key>
+            <PropertyRef Name="CompWinID" />
+          </Key>
+          <Property Name="CompWinID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstWinner" Type="int" Nullable="false" />
+          <Property Name="SecondWinner" Type="int" />
+          <Property Name="ThirdWinner" Type="int" />
+        </EntityType>
+        <EntityType Name="tblFaculty">
+          <Key>
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="FacultyID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyGender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FacultyJoiningDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyActive" Type="bit" Nullable="false" />
+          <Property Name="FacultySpecification" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FacultyEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFAQ">
+          <Key>
+            <PropertyRef Name="FAQID" />
+          </Key>
+          <Property Name="FAQID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FAQQuestion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FAQAnswer" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FAQDateTime" Type="datetime" Nullable="false" />
+          <Property Name="FAQActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSection">
+          <Key>
+            <PropertyRef Name="SectionID" />
+          </Key>
+          <Property Name="SectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClassID" Type="int" Nullable="false" />
+          <Property Name="ReportingDateTime" Type="datetime" />
+          <Property Name="SectionActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StudentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SectionID" Type="int" Nullable="false" />
+          <Property Name="StudentGender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="StudentAdmissionDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StudentActive" Type="bit" Nullable="false" />
+          <Property Name="StudentEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSupport">
+          <Key>
+            <PropertyRef Name="SupportID" />
+          </Key>
+          <Property Name="SupportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupportNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SupportEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SupportAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SupportPerson" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReportingDateTime" Type="datetime" Nullable="false" />
+          <Property Name="SupportActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSurvey">
+          <Key>
+            <PropertyRef Name="SurveyID" />
+          </Key>
+          <Property Name="SurveyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurveyTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SurveyDueDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SurveyDescription" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="UserTypeID" Type="int" Nullable="false" />
+          <Property Name="SurveyConducts" Type="int" Nullable="false" />
+          <Property Name="SurveyActive" Type="bit" Nullable="false" />
+          <Property Name="SurveyReportingDateTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSurveyQuestion">
+          <Key>
+            <PropertyRef Name="SurveyQuestionID" />
+          </Key>
+          <Property Name="SurveyQuestionID" Type="int" Nullable="false" />
+          <Property Name="SurveyID" Type="int" Nullable="false" />
+          <Property Name="SurveyQuestion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SurveyOptions" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSurveyResponse">
+          <Key>
+            <PropertyRef Name="SurveyResponseID" />
+          </Key>
+          <Property Name="SurveyResponseID" Type="int" Nullable="false" />
+          <Property Name="SurveyQuestionID" Type="int" Nullable="false" />
+          <Property Name="QuestionResponse" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="StaffNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserRequestDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserTypeID" Type="int" Nullable="false" />
+          <Property Name="UserActive" Type="bit" Nullable="false" />
+          <Property Name="UserRegStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserReqRejectReason" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserTypeKeyword" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblCompetition_tblUserType">
+          <End Role="tblUserType" Type="Self.tblUserType" Multiplicity="1" />
+          <End Role="tblCompetition" Type="Self.tblCompetition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="tblCompetition">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompParticipant_tblCompetition">
+          <End Role="tblCompetition" Type="Self.tblCompetition" Multiplicity="1" />
+          <End Role="tblCompParticipant" Type="Self.tblCompParticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompetition">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="tblCompParticipant">
+              <PropertyRef Name="CompID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompParticipant_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblCompParticipant" Type="Self.tblCompParticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblCompParticipant">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompWinner_tblCompParticipant">
+          <End Role="tblCompParticipant" Type="Self.tblCompParticipant" Multiplicity="1" />
+          <End Role="tblCompWinner" Type="Self.tblCompWinner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompParticipant">
+              <PropertyRef Name="CompParticID" />
+            </Principal>
+            <Dependent Role="tblCompWinner">
+              <PropertyRef Name="FirstWinner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompWinner_tblCompParticipant1">
+          <End Role="tblCompParticipant" Type="Self.tblCompParticipant" Multiplicity="0..1" />
+          <End Role="tblCompWinner" Type="Self.tblCompWinner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompParticipant">
+              <PropertyRef Name="CompParticID" />
+            </Principal>
+            <Dependent Role="tblCompWinner">
+              <PropertyRef Name="SecondWinner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompWinner_tblCompParticipant2">
+          <End Role="tblCompParticipant" Type="Self.tblCompParticipant" Multiplicity="0..1" />
+          <End Role="tblCompWinner" Type="Self.tblCompWinner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompParticipant">
+              <PropertyRef Name="CompParticID" />
+            </Principal>
+            <Dependent Role="tblCompWinner">
+              <PropertyRef Name="ThirdWinner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSection_tblClass">
+          <End Role="tblClass" Type="Self.tblClass" Multiplicity="1" />
+          <End Role="tblSection" Type="Self.tblSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblClass">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="tblSection">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblSection">
+          <End Role="tblSection" Type="Self.tblSection" Multiplicity="1" />
+          <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSection">
+              <PropertyRef Name="SectionID" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSurvey_tblUserType">
+          <End Role="tblUserType" Type="Self.tblUserType" Multiplicity="1" />
+          <End Role="tblSurvey" Type="Self.tblSurvey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="tblSurvey">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSurveyQuestion_tblSurvey">
+          <End Role="tblSurvey" Type="Self.tblSurvey" Multiplicity="1" />
+          <End Role="tblSurveyQuestion" Type="Self.tblSurveyQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSurvey">
+              <PropertyRef Name="SurveyID" />
+            </Principal>
+            <Dependent Role="tblSurveyQuestion">
+              <PropertyRef Name="SurveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSurveyResponse_tblSurveyQuestion">
+          <End Role="tblSurveyQuestion" Type="Self.tblSurveyQuestion" Multiplicity="1" />
+          <End Role="tblSurveyResponse" Type="Self.tblSurveyResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSurveyQuestion">
+              <PropertyRef Name="SurveyQuestionID" />
+            </Principal>
+            <Dependent Role="tblSurveyResponse">
+              <PropertyRef Name="SurveyQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblAdmin">
+          <End Role="tblAdmin" Type="Self.tblAdmin" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdmin">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="AdminNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblFaculty">
+          <End Role="tblFaculty" Type="Self.tblFaculty" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFaculty">
+              <PropertyRef Name="FacultyID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="StaffNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblStudent">
+          <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStudent">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="StudentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblUserType">
+          <End Role="tblUserType" Type="Self.tblUserType" Multiplicity="1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SurveyDBModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAdmin" EntityType="Self.tblAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblClass" EntityType="Self.tblClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCompetition" EntityType="Self.tblCompetition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCompParticipant" EntityType="Self.tblCompParticipant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCompWinner" EntityType="Self.tblCompWinner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFaculty" EntityType="Self.tblFaculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFAQ" EntityType="Self.tblFAQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSection" EntityType="Self.tblSection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStudent" EntityType="Self.tblStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSupport" EntityType="Self.tblSupport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSurvey" EntityType="Self.tblSurvey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSurveyQuestion" EntityType="Self.tblSurveyQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSurveyResponse" EntityType="Self.tblSurveyResponse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserType" EntityType="Self.tblUserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblCompetition_tblUserType" Association="Self.FK_tblCompetition_tblUserType">
+            <End Role="tblUserType" EntitySet="tblUserType" />
+            <End Role="tblCompetition" EntitySet="tblCompetition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompParticipant_tblCompetition" Association="Self.FK_tblCompParticipant_tblCompetition">
+            <End Role="tblCompetition" EntitySet="tblCompetition" />
+            <End Role="tblCompParticipant" EntitySet="tblCompParticipant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompParticipant_tblUser" Association="Self.FK_tblCompParticipant_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblCompParticipant" EntitySet="tblCompParticipant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompWinner_tblCompParticipant" Association="Self.FK_tblCompWinner_tblCompParticipant">
+            <End Role="tblCompParticipant" EntitySet="tblCompParticipant" />
+            <End Role="tblCompWinner" EntitySet="tblCompWinner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompWinner_tblCompParticipant1" Association="Self.FK_tblCompWinner_tblCompParticipant1">
+            <End Role="tblCompParticipant" EntitySet="tblCompParticipant" />
+            <End Role="tblCompWinner" EntitySet="tblCompWinner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompWinner_tblCompParticipant2" Association="Self.FK_tblCompWinner_tblCompParticipant2">
+            <End Role="tblCompParticipant" EntitySet="tblCompParticipant" />
+            <End Role="tblCompWinner" EntitySet="tblCompWinner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSection_tblClass" Association="Self.FK_tblSection_tblClass">
+            <End Role="tblClass" EntitySet="tblClass" />
+            <End Role="tblSection" EntitySet="tblSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblSection" Association="Self.FK_tblStudent_tblSection">
+            <End Role="tblSection" EntitySet="tblSection" />
+            <End Role="tblStudent" EntitySet="tblStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSurvey_tblUserType" Association="Self.FK_tblSurvey_tblUserType">
+            <End Role="tblUserType" EntitySet="tblUserType" />
+            <End Role="tblSurvey" EntitySet="tblSurvey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSurveyQuestion_tblSurvey" Association="Self.FK_tblSurveyQuestion_tblSurvey">
+            <End Role="tblSurvey" EntitySet="tblSurvey" />
+            <End Role="tblSurveyQuestion" EntitySet="tblSurveyQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSurveyResponse_tblSurveyQuestion" Association="Self.FK_tblSurveyResponse_tblSurveyQuestion">
+            <End Role="tblSurveyQuestion" EntitySet="tblSurveyQuestion" />
+            <End Role="tblSurveyResponse" EntitySet="tblSurveyResponse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblAdmin" Association="Self.FK_tblUser_tblAdmin">
+            <End Role="tblAdmin" EntitySet="tblAdmin" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblFaculty" Association="Self.FK_tblUser_tblFaculty">
+            <End Role="tblFaculty" EntitySet="tblFaculty" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblStudent" Association="Self.FK_tblUser_tblStudent">
+            <End Role="tblStudent" EntitySet="tblStudent" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblUserType" Association="Self.FK_tblUser_tblUserType">
+            <End Role="tblUserType" EntitySet="tblUserType" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SurveyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SurveyDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="SurveyDBModel.sysdiagram" />
+          <EntitySet Name="tblAdmins" EntityType="SurveyDBModel.tblAdmin" />
+          <EntitySet Name="tblClasses" EntityType="SurveyDBModel.tblClass" />
+          <EntitySet Name="tblCompetitions" EntityType="SurveyDBModel.tblCompetition" />
+          <EntitySet Name="tblCompParticipants" EntityType="SurveyDBModel.tblCompParticipant" />
+          <EntitySet Name="tblCompWinners" EntityType="SurveyDBModel.tblCompWinner" />
+          <EntitySet Name="tblFaculties" EntityType="SurveyDBModel.tblFaculty" />
+          <EntitySet Name="tblFAQs" EntityType="SurveyDBModel.tblFAQ" />
+          <EntitySet Name="tblSections" EntityType="SurveyDBModel.tblSection" />
+          <EntitySet Name="tblStudents" EntityType="SurveyDBModel.tblStudent" />
+          <EntitySet Name="tblSupports" EntityType="SurveyDBModel.tblSupport" />
+          <EntitySet Name="tblSurveys" EntityType="SurveyDBModel.tblSurvey" />
+          <EntitySet Name="tblSurveyQuestions" EntityType="SurveyDBModel.tblSurveyQuestion" />
+          <EntitySet Name="tblSurveyResponses" EntityType="SurveyDBModel.tblSurveyResponse" />
+          <EntitySet Name="tblUsers" EntityType="SurveyDBModel.tblUser" />
+          <EntitySet Name="tblUserTypes" EntityType="SurveyDBModel.tblUserType" />
+          <AssociationSet Name="FK_tblUser_tblAdmin" Association="SurveyDBModel.FK_tblUser_tblAdmin">
+            <End Role="tblAdmin" EntitySet="tblAdmins" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSection_tblClass" Association="SurveyDBModel.FK_tblSection_tblClass">
+            <End Role="tblClass" EntitySet="tblClasses" />
+            <End Role="tblSection" EntitySet="tblSections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompetition_tblUserType" Association="SurveyDBModel.FK_tblCompetition_tblUserType">
+            <End Role="tblUserType" EntitySet="tblUserTypes" />
+            <End Role="tblCompetition" EntitySet="tblCompetitions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompParticipant_tblCompetition" Association="SurveyDBModel.FK_tblCompParticipant_tblCompetition">
+            <End Role="tblCompetition" EntitySet="tblCompetitions" />
+            <End Role="tblCompParticipant" EntitySet="tblCompParticipants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompParticipant_tblUser" Association="SurveyDBModel.FK_tblCompParticipant_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblCompParticipant" EntitySet="tblCompParticipants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompWinner_tblCompParticipant" Association="SurveyDBModel.FK_tblCompWinner_tblCompParticipant">
+            <End Role="tblCompParticipant" EntitySet="tblCompParticipants" />
+            <End Role="tblCompWinner" EntitySet="tblCompWinners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompWinner_tblCompParticipant1" Association="SurveyDBModel.FK_tblCompWinner_tblCompParticipant1">
+            <End Role="tblCompParticipant" EntitySet="tblCompParticipants" />
+            <End Role="tblCompWinner" EntitySet="tblCompWinners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCompWinner_tblCompParticipant2" Association="SurveyDBModel.FK_tblCompWinner_tblCompParticipant2">
+            <End Role="tblCompParticipant" EntitySet="tblCompParticipants" />
+            <End Role="tblCompWinner" EntitySet="tblCompWinners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblFaculty" Association="SurveyDBModel.FK_tblUser_tblFaculty">
+            <End Role="tblFaculty" EntitySet="tblFaculties" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblSection" Association="SurveyDBModel.FK_tblStudent_tblSection">
+            <End Role="tblSection" EntitySet="tblSections" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblStudent" Association="SurveyDBModel.FK_tblUser_tblStudent">
+            <End Role="tblStudent" EntitySet="tblStudents" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSurvey_tblUserType" Association="SurveyDBModel.FK_tblSurvey_tblUserType">
+            <End Role="tblUserType" EntitySet="tblUserTypes" />
+            <End Role="tblSurvey" EntitySet="tblSurveys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSurveyQuestion_tblSurvey" Association="SurveyDBModel.FK_tblSurveyQuestion_tblSurvey">
+            <End Role="tblSurvey" EntitySet="tblSurveys" />
+            <End Role="tblSurveyQuestion" EntitySet="tblSurveyQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSurveyResponse_tblSurveyQuestion" Association="SurveyDBModel.FK_tblSurveyResponse_tblSurveyQuestion">
+            <End Role="tblSurveyQuestion" EntitySet="tblSurveyQuestions" />
+            <End Role="tblSurveyResponse" EntitySet="tblSurveyResponses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblUserType" Association="SurveyDBModel.FK_tblUser_tblUserType">
+            <End Role="tblUserType" EntitySet="tblUserTypes" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminCreationDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUsers" Relationship="SurveyDBModel.FK_tblUser_tblAdmin" FromRole="tblAdmin" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblClass">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportingDatetime" Type="DateTime" Precision="3" />
+          <Property Name="ClassActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblSections" Relationship="SurveyDBModel.FK_tblSection_tblClass" FromRole="tblClass" ToRole="tblSection" />
+        </EntityType>
+        <EntityType Name="tblCompetition">
+          <Key>
+            <PropertyRef Name="CompID" />
+          </Key>
+          <Property Name="CompID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompActive" Type="Boolean" Nullable="false" />
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblUserType" Relationship="SurveyDBModel.FK_tblCompetition_tblUserType" FromRole="tblCompetition" ToRole="tblUserType" />
+          <NavigationProperty Name="tblCompParticipants" Relationship="SurveyDBModel.FK_tblCompParticipant_tblCompetition" FromRole="tblCompetition" ToRole="tblCompParticipant" />
+        </EntityType>
+        <EntityType Name="tblCompParticipant">
+          <Key>
+            <PropertyRef Name="CompParticID" />
+          </Key>
+          <Property Name="CompParticID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="CompParticName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCompetition" Relationship="SurveyDBModel.FK_tblCompParticipant_tblCompetition" FromRole="tblCompParticipant" ToRole="tblCompetition" />
+          <NavigationProperty Name="tblUser" Relationship="SurveyDBModel.FK_tblCompParticipant_tblUser" FromRole="tblCompParticipant" ToRole="tblUser" />
+          <NavigationProperty Name="tblCompWinners" Relationship="SurveyDBModel.FK_tblCompWinner_tblCompParticipant" FromRole="tblCompParticipant" ToRole="tblCompWinner" />
+          <NavigationProperty Name="tblCompWinners1" Relationship="SurveyDBModel.FK_tblCompWinner_tblCompParticipant1" FromRole="tblCompParticipant" ToRole="tblCompWinner" />
+          <NavigationProperty Name="tblCompWinners2" Relationship="SurveyDBModel.FK_tblCompWinner_tblCompParticipant2" FromRole="tblCompParticipant" ToRole="tblCompWinner" />
+        </EntityType>
+        <EntityType Name="tblCompWinner">
+          <Key>
+            <PropertyRef Name="CompWinID" />
+          </Key>
+          <Property Name="CompWinID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstWinner" Type="Int32" Nullable="false" />
+          <Property Name="SecondWinner" Type="Int32" />
+          <Property Name="ThirdWinner" Type="Int32" />
+          <NavigationProperty Name="tblCompParticipant" Relationship="SurveyDBModel.FK_tblCompWinner_tblCompParticipant" FromRole="tblCompWinner" ToRole="tblCompParticipant" />
+          <NavigationProperty Name="tblCompParticipant1" Relationship="SurveyDBModel.FK_tblCompWinner_tblCompParticipant1" FromRole="tblCompWinner" ToRole="tblCompParticipant" />
+          <NavigationProperty Name="tblCompParticipant2" Relationship="SurveyDBModel.FK_tblCompWinner_tblCompParticipant2" FromRole="tblCompWinner" ToRole="tblCompParticipant" />
+        </EntityType>
+        <EntityType Name="tblFaculty">
+          <Key>
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="FacultyID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacultyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacultyGender" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FacultyJoiningDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacultyActive" Type="Boolean" Nullable="false" />
+          <Property Name="FacultySpecification" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacultyEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUsers" Relationship="SurveyDBModel.FK_tblUser_tblFaculty" FromRole="tblFaculty" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblFAQ">
+          <Key>
+            <PropertyRef Name="FAQID" />
+          </Key>
+          <Property Name="FAQID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FAQQuestion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FAQAnswer" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FAQDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FAQActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSection">
+          <Key>
+            <PropertyRef Name="SectionID" />
+          </Key>
+          <Property Name="SectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClassID" Type="Int32" Nullable="false" />
+          <Property Name="ReportingDateTime" Type="DateTime" Precision="3" />
+          <Property Name="SectionActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblClass" Relationship="SurveyDBModel.FK_tblSection_tblClass" FromRole="tblSection" ToRole="tblClass" />
+          <NavigationProperty Name="tblStudents" Relationship="SurveyDBModel.FK_tblStudent_tblSection" FromRole="tblSection" ToRole="tblStudent" />
+        </EntityType>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SectionID" Type="Int32" Nullable="false" />
+          <Property Name="StudentGender" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="StudentAdmissionDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentActive" Type="Boolean" Nullable="false" />
+          <Property Name="StudentEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSection" Relationship="SurveyDBModel.FK_tblStudent_tblSection" FromRole="tblStudent" ToRole="tblSection" />
+          <NavigationProperty Name="tblUsers" Relationship="SurveyDBModel.FK_tblUser_tblStudent" FromRole="tblStudent" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblSupport">
+          <Key>
+            <PropertyRef Name="SupportID" />
+          </Key>
+          <Property Name="SupportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupportNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupportEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupportAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupportPerson" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportingDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SupportActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSurvey">
+          <Key>
+            <PropertyRef Name="SurveyID" />
+          </Key>
+          <Property Name="SurveyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurveyTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurveyDueDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurveyDescription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+          <Property Name="SurveyConducts" Type="Int32" Nullable="false" />
+          <Property Name="SurveyActive" Type="Boolean" Nullable="false" />
+          <Property Name="SurveyReportingDateTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUserType" Relationship="SurveyDBModel.FK_tblSurvey_tblUserType" FromRole="tblSurvey" ToRole="tblUserType" />
+          <NavigationProperty Name="tblSurveyQuestions" Relationship="SurveyDBModel.FK_tblSurveyQuestion_tblSurvey" FromRole="tblSurvey" ToRole="tblSurveyQuestion" />
+        </EntityType>
+        <EntityType Name="tblSurveyQuestion">
+          <Key>
+            <PropertyRef Name="SurveyQuestionID" />
+          </Key>
+          <Property Name="SurveyQuestionID" Type="Int32" Nullable="false" />
+          <Property Name="SurveyID" Type="Int32" Nullable="false" />
+          <Property Name="SurveyQuestion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurveyOptions" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSurvey" Relationship="SurveyDBModel.FK_tblSurveyQuestion_tblSurvey" FromRole="tblSurveyQuestion" ToRole="tblSurvey" />
+          <NavigationProperty Name="tblSurveyResponses" Relationship="SurveyDBModel.FK_tblSurveyResponse_tblSurveyQuestion" FromRole="tblSurveyQuestion" ToRole="tblSurveyResponse" />
+        </EntityType>
+        <EntityType Name="tblSurveyResponse">
+          <Key>
+            <PropertyRef Name="SurveyResponseID" />
+          </Key>
+          <Property Name="SurveyResponseID" Type="Int32" Nullable="false" />
+          <Property Name="SurveyQuestionID" Type="Int32" Nullable="false" />
+          <Property Name="QuestionResponse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSurveyQuestion" Relationship="SurveyDBModel.FK_tblSurveyResponse_tblSurveyQuestion" FromRole="tblSurveyResponse" ToRole="tblSurveyQuestion" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StaffNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserRequestDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+          <Property Name="UserActive" Type="Boolean" Nullable="false" />
+          <Property Name="UserRegStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserReqRejectReason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblAdmin" Relationship="SurveyDBModel.FK_tblUser_tblAdmin" FromRole="tblUser" ToRole="tblAdmin" />
+          <NavigationProperty Name="tblCompParticipants" Relationship="SurveyDBModel.FK_tblCompParticipant_tblUser" FromRole="tblUser" ToRole="tblCompParticipant" />
+          <NavigationProperty Name="tblFaculty" Relationship="SurveyDBModel.FK_tblUser_tblFaculty" FromRole="tblUser" ToRole="tblFaculty" />
+          <NavigationProperty Name="tblStudent" Relationship="SurveyDBModel.FK_tblUser_tblStudent" FromRole="tblUser" ToRole="tblStudent" />
+          <NavigationProperty Name="tblUserType" Relationship="SurveyDBModel.FK_tblUser_tblUserType" FromRole="tblUser" ToRole="tblUserType" />
+        </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserTypeKeyword" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tblCompetitions" Relationship="SurveyDBModel.FK_tblCompetition_tblUserType" FromRole="tblUserType" ToRole="tblCompetition" />
+          <NavigationProperty Name="tblSurveys" Relationship="SurveyDBModel.FK_tblSurvey_tblUserType" FromRole="tblUserType" ToRole="tblSurvey" />
+          <NavigationProperty Name="tblUsers" Relationship="SurveyDBModel.FK_tblUser_tblUserType" FromRole="tblUserType" ToRole="tblUser" />
+        </EntityType>
+        <Association Name="FK_tblUser_tblAdmin">
+          <End Type="SurveyDBModel.tblAdmin" Role="tblAdmin" Multiplicity="0..1" />
+          <End Type="SurveyDBModel.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAdmin">
+              <PropertyRef Name="AdminID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="AdminNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSection_tblClass">
+          <End Type="SurveyDBModel.tblClass" Role="tblClass" Multiplicity="1" />
+          <End Type="SurveyDBModel.tblSection" Role="tblSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblClass">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="tblSection">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompetition_tblUserType">
+          <End Type="SurveyDBModel.tblUserType" Role="tblUserType" Multiplicity="1" />
+          <End Type="SurveyDBModel.tblCompetition" Role="tblCompetition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="tblCompetition">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompParticipant_tblCompetition">
+          <End Type="SurveyDBModel.tblCompetition" Role="tblCompetition" Multiplicity="1" />
+          <End Type="SurveyDBModel.tblCompParticipant" Role="tblCompParticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompetition">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="tblCompParticipant">
+              <PropertyRef Name="CompID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompParticipant_tblUser">
+          <End Type="SurveyDBModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="SurveyDBModel.tblCompParticipant" Role="tblCompParticipant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblCompParticipant">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompWinner_tblCompParticipant">
+          <End Type="SurveyDBModel.tblCompParticipant" Role="tblCompParticipant" Multiplicity="1" />
+          <End Type="SurveyDBModel.tblCompWinner" Role="tblCompWinner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompParticipant">
+              <PropertyRef Name="CompParticID" />
+            </Principal>
+            <Dependent Role="tblCompWinner">
+              <PropertyRef Name="FirstWinner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompWinner_tblCompParticipant1">
+          <End Type="SurveyDBModel.tblCompParticipant" Role="tblCompParticipant" Multiplicity="0..1" />
+          <End Type="SurveyDBModel.tblCompWinner" Role="tblCompWinner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompParticipant">
+              <PropertyRef Name="CompParticID" />
+            </Principal>
+            <Dependent Role="tblCompWinner">
+              <PropertyRef Name="SecondWinner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCompWinner_tblCompParticipant2">
+          <End Type="SurveyDBModel.tblCompParticipant" Role="tblCompParticipant" Multiplicity="0..1" />
+          <End Type="SurveyDBModel.tblCompWinner" Role="tblCompWinner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompParticipant">
+              <PropertyRef Name="CompParticID" />
+            </Principal>
+            <Dependent Role="tblCompWinner">
+              <PropertyRef Name="ThirdWinner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblFaculty">
+          <End Type="SurveyDBModel.tblFaculty" Role="tblFaculty" Multiplicity="0..1" />
+          <End Type="SurveyDBModel.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFaculty">
+              <PropertyRef Name="FacultyID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="StaffNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblSection">
+          <End Type="SurveyDBModel.tblSection" Role="tblSection" Multiplicity="1" />
+          <End Type="SurveyDBModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSection">
+              <PropertyRef Name="SectionID" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblStudent">
+          <End Type="SurveyDBModel.tblStudent" Role="tblStudent" Multiplicity="0..1" />
+          <End Type="SurveyDBModel.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStudent">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="StudentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSurvey_tblUserType">
+          <End Type="SurveyDBModel.tblUserType" Role="tblUserType" Multiplicity="1" />
+          <End Type="SurveyDBModel.tblSurvey" Role="tblSurvey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="tblSurvey">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSurveyQuestion_tblSurvey">
+          <End Type="SurveyDBModel.tblSurvey" Role="tblSurvey" Multiplicity="1" />
+          <End Type="SurveyDBModel.tblSurveyQuestion" Role="tblSurveyQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSurvey">
+              <PropertyRef Name="SurveyID" />
+            </Principal>
+            <Dependent Role="tblSurveyQuestion">
+              <PropertyRef Name="SurveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSurveyResponse_tblSurveyQuestion">
+          <End Type="SurveyDBModel.tblSurveyQuestion" Role="tblSurveyQuestion" Multiplicity="1" />
+          <End Type="SurveyDBModel.tblSurveyResponse" Role="tblSurveyResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSurveyQuestion">
+              <PropertyRef Name="SurveyQuestionID" />
+            </Principal>
+            <Dependent Role="tblSurveyResponse">
+              <PropertyRef Name="SurveyQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblUserType">
+          <End Type="SurveyDBModel.tblUserType" Role="tblUserType" Multiplicity="1" />
+          <End Type="SurveyDBModel.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SurveyDBModelStoreContainer" CdmEntityContainer="SurveyDBEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SurveyDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdmins">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblAdmin">
+              <MappingFragment StoreEntitySet="tblAdmin">
+                <ScalarProperty Name="AdminCreationDate" ColumnName="AdminCreationDate" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblClasses">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblClass">
+              <MappingFragment StoreEntitySet="tblClass">
+                <ScalarProperty Name="ClassActive" ColumnName="ClassActive" />
+                <ScalarProperty Name="ReportingDatetime" ColumnName="ReportingDatetime" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCompetitions">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblCompetition">
+              <MappingFragment StoreEntitySet="tblCompetition">
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="CompActive" ColumnName="CompActive" />
+                <ScalarProperty Name="CompDate" ColumnName="CompDate" />
+                <ScalarProperty Name="CompDescription" ColumnName="CompDescription" />
+                <ScalarProperty Name="CompName" ColumnName="CompName" />
+                <ScalarProperty Name="CompID" ColumnName="CompID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCompParticipants">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblCompParticipant">
+              <MappingFragment StoreEntitySet="tblCompParticipant">
+                <ScalarProperty Name="CompParticName" ColumnName="CompParticName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CompID" ColumnName="CompID" />
+                <ScalarProperty Name="CompParticID" ColumnName="CompParticID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCompWinners">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblCompWinner">
+              <MappingFragment StoreEntitySet="tblCompWinner">
+                <ScalarProperty Name="ThirdWinner" ColumnName="ThirdWinner" />
+                <ScalarProperty Name="SecondWinner" ColumnName="SecondWinner" />
+                <ScalarProperty Name="FirstWinner" ColumnName="FirstWinner" />
+                <ScalarProperty Name="CompWinID" ColumnName="CompWinID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFaculties">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblFaculty">
+              <MappingFragment StoreEntitySet="tblFaculty">
+                <ScalarProperty Name="FacultyEmail" ColumnName="FacultyEmail" />
+                <ScalarProperty Name="FacultySpecification" ColumnName="FacultySpecification" />
+                <ScalarProperty Name="FacultyActive" ColumnName="FacultyActive" />
+                <ScalarProperty Name="FacultyJoiningDate" ColumnName="FacultyJoiningDate" />
+                <ScalarProperty Name="FacultyGender" ColumnName="FacultyGender" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFAQs">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblFAQ">
+              <MappingFragment StoreEntitySet="tblFAQ">
+                <ScalarProperty Name="FAQActive" ColumnName="FAQActive" />
+                <ScalarProperty Name="FAQDateTime" ColumnName="FAQDateTime" />
+                <ScalarProperty Name="FAQAnswer" ColumnName="FAQAnswer" />
+                <ScalarProperty Name="FAQQuestion" ColumnName="FAQQuestion" />
+                <ScalarProperty Name="FAQID" ColumnName="FAQID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSections">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblSection">
+              <MappingFragment StoreEntitySet="tblSection">
+                <ScalarProperty Name="SectionActive" ColumnName="SectionActive" />
+                <ScalarProperty Name="ReportingDateTime" ColumnName="ReportingDateTime" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStudents">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblStudent">
+              <MappingFragment StoreEntitySet="tblStudent">
+                <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+                <ScalarProperty Name="StudentActive" ColumnName="StudentActive" />
+                <ScalarProperty Name="StudentAdmissionDate" ColumnName="StudentAdmissionDate" />
+                <ScalarProperty Name="StudentGender" ColumnName="StudentGender" />
+                <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSupports">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblSupport">
+              <MappingFragment StoreEntitySet="tblSupport">
+                <ScalarProperty Name="SupportActive" ColumnName="SupportActive" />
+                <ScalarProperty Name="ReportingDateTime" ColumnName="ReportingDateTime" />
+                <ScalarProperty Name="SupportPerson" ColumnName="SupportPerson" />
+                <ScalarProperty Name="SupportAddress" ColumnName="SupportAddress" />
+                <ScalarProperty Name="SupportEmail" ColumnName="SupportEmail" />
+                <ScalarProperty Name="SupportNumber" ColumnName="SupportNumber" />
+                <ScalarProperty Name="SupportID" ColumnName="SupportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSurveys">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblSurvey">
+              <MappingFragment StoreEntitySet="tblSurvey">
+                <ScalarProperty Name="SurveyReportingDateTime" ColumnName="SurveyReportingDateTime" />
+                <ScalarProperty Name="SurveyActive" ColumnName="SurveyActive" />
+                <ScalarProperty Name="SurveyConducts" ColumnName="SurveyConducts" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="SurveyDescription" ColumnName="SurveyDescription" />
+                <ScalarProperty Name="SurveyDueDate" ColumnName="SurveyDueDate" />
+                <ScalarProperty Name="SurveyTitle" ColumnName="SurveyTitle" />
+                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSurveyQuestions">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblSurveyQuestion">
+              <MappingFragment StoreEntitySet="tblSurveyQuestion">
+                <ScalarProperty Name="SurveyOptions" ColumnName="SurveyOptions" />
+                <ScalarProperty Name="SurveyQuestion" ColumnName="SurveyQuestion" />
+                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+                <ScalarProperty Name="SurveyQuestionID" ColumnName="SurveyQuestionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSurveyResponses">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblSurveyResponse">
+              <MappingFragment StoreEntitySet="tblSurveyResponse">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="QuestionResponse" ColumnName="QuestionResponse" />
+                <ScalarProperty Name="SurveyQuestionID" ColumnName="SurveyQuestionID" />
+                <ScalarProperty Name="SurveyResponseID" ColumnName="SurveyResponseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserReqRejectReason" ColumnName="UserReqRejectReason" />
+                <ScalarProperty Name="UserRegStatus" ColumnName="UserRegStatus" />
+                <ScalarProperty Name="UserActive" ColumnName="UserActive" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="UserRequestDate" ColumnName="UserRequestDate" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+                <ScalarProperty Name="StaffNo" ColumnName="StaffNo" />
+                <ScalarProperty Name="AdminNo" ColumnName="AdminNo" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserTypes">
+            <EntityTypeMapping TypeName="SurveyDBModel.tblUserType">
+              <MappingFragment StoreEntitySet="tblUserType">
+                <ScalarProperty Name="UserTypeKeyword" ColumnName="UserTypeKeyword" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

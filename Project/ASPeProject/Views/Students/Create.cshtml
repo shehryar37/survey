@@ -1,0 +1,144 @@
+﻿@model SurveyProject.tblStudent
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="card">
+        <div class="header">
+            <h2>Create</h2>
+        </div>
+        <div class="body clearfix">
+            <div class="col-lg-12">
+                <!-- Student Name -->
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label>Name</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        @Html.ValidationMessageFor(model => model.StudentName, "", new { @class = "text-danger" })
+                        <div class="form-line">
+                            @Html.EditorFor(model => model.StudentName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student Email -->
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        @Html.ValidationMessageFor(model => model.StudentEmail, "", new { @class = "text-danger" })
+                        <div class="form-line">
+                            @Html.EditorFor(model => model.StudentEmail, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Class -->
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label>Class</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <div class="form-line">
+                            @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "form-control", id = "ddlClass", @onchange = "javascript:getSections(this.value);" })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section -->
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label>Section</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <div class="form-line">
+                            @Html.DropDownListFor(model => model.SectionID, new SelectList(Enumerable.Empty<SelectListItem>(), "SectionID", "SectionName"), "Select Section", new { @class = "form-control", id = "ddlSection" })
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label>Gender</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        @Html.RadioButtonFor(model => model.StudentGender, "M", new { id = "rMale", @class = "with-gap radio-col-blue", name = "gender", required = "required" })
+                        <label for="rMale">Male</label>
+                        @Html.RadioButtonFor(model => model.StudentGender, "F", new { id = "rFemale", @class = "with-gap radio-col-blue", name = "gender", required = "required" })
+                        <label for="rFemale">Female</label>
+                        @Html.ValidationMessageFor(model => model.StudentGender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Back and Submit buttons -->
+                <div class="form-group">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-block bg-white col-black waves-effect" })
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                        <input type="submit" value="Create" class="btn btn-block bg-blue col-white waves-effect" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Script to see what class is chosen so the section dropdown updates accordingly -->
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        // Getting the value of whichever selection is present in the dropdown.
+        var value = $("#ddlClass option:selected").val();
+
+        // Populating the sections dropdown based on value of default item selected.
+        getSections(value);
+    });
+
+    // Executes whenever the Class dropdown (ddlClass) changes.
+    function getSections(_ClassId) {
+        // Message for processing duration
+        var procemessage = "<option value='0'> Please wait...</option>";
+
+        $("#ddlSection").html(procemessage).show();
+        var url = "/Students/LoadSectionsByClass/";
+
+        $.ajax({
+            url: url,
+            data: { classID: _ClassId },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                var markup = "<option value='0'>Select Section</option>";
+
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+
+                $("#ddlSection").html(markup).show();
+            },
+            error: function (response) {
+                showError(response);
+            }
+        });
+    }
+
+    function showError(errorMessage) {
+        alert("Error: " + errorMessage);
+    }
+</script>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

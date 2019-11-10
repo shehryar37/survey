@@ -1,0 +1,79 @@
+﻿@model SurveyProject.tblSection
+
+@{
+    ViewBag.Title = "Section";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="card">
+        <div class="header">
+            <h2>Create</h2>
+        </div>
+            <div class="body clearfix">
+                <div class="col-sm-12">
+                    
+
+                        <!--Name-->
+                        <div class="form-group">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <label>Section Name</label>
+                            </div>
+
+
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                <div class="form-line">
+
+
+                                    @Html.EditorFor(model => model.SectionName, new { htmlAttributes = new { @class = "form-control", placeholder = "Section Name" } })
+                                    @Html.ValidationMessageFor(model => model.SectionName, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--For Class ID -->
+
+                        <div class="form-group">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <label>Class ID</label>
+                            </div>
+                            <!--For Class ID Drop Down -->
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                <div class="form-line">
+                                    @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ClassID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--For back and Create Button-->
+                        <br />
+                        <div class="form-group ">
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                                <input type="submit" value="Create" class="btn btn-block bg-white col-black waves-effect" />
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-block bg-blue waves-effect" })
+                            </div>
+                        </div>
+
+
+
+
+
+                    
+                
+            </div>
+        </div>
+    </div>
+    
+
+}

@@ -1,0 +1,87 @@
+﻿@model SurveyProject.tblSurvey
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.SurveyID)
+
+    @Html.HiddenFor(model => model.SurveyActive)
+    @Html.HiddenFor(model => model.SurveyConducts)
+    @Html.HiddenFor(model => model.SurveyID)
+    @Html.HiddenFor(model => model.SurveyReportingDateTime)
+
+    <div class="card">
+        <div class="header">
+            <h4>Edit</h4>
+        </div>
+
+        <div class="body clearfix">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>Title</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-line">
+                            @Html.EditorFor(model => model.SurveyTitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SurveyTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>Due Date</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-line">
+                            <input type="date" id="surveyDueDate" name="surveyDueDate" class="form-control" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>Description</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-line">
+                            @Html.EditorFor(model => model.SurveyDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SurveyDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label>Audience</label>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-line">
+                            @Html.DropDownList("UserTypeID", null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UserTypeID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-line">
+                        <div class="col-md-2">
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-block bg-white col-black waves-effect" })
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                            <input type="submit" value="Save" class="btn btn-block bg-blue waves-effect" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

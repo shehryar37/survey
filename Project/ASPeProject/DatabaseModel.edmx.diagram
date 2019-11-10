@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a8d7ae8d0d1460d9271cf2aeb88f2b5" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="SurveyDBModel.sysdiagram" Width="1.5" PointX="16.625" PointY="6" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblAdmin" Width="1.5" PointX="3.75" PointY="4.25" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblClass" Width="1.5" PointX="14.25" PointY="4.25" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblCompetition" Width="1.5" PointX="0.75" PointY="3.375" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblCompParticipant" Width="1.5" PointX="9.25" PointY="1.25" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblCompWinner" Width="1.5" PointX="9.25" PointY="4.5" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblFaculty" Width="1.5" PointX="3.75" PointY="1.375" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblFAQ" Width="1.5" PointX="16.625" PointY="3.625" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblSection" Width="1.5" PointX="14.375" PointY="0.875" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblStudent" Width="1.5" PointX="11.875" PointY="0.5" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblSupport" Width="1.5" PointX="16.625" PointY="0.75" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblSurvey" Width="1.5" PointX="1.5" PointY="6.25" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblSurveyQuestion" Width="1.5" PointX="5.5" PointY="7.375" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblSurveyResponse" Width="1.5" PointX="8.75" PointY="8.5" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblUser" Width="1.5" PointX="6.75" PointY="0.5" />
+        <EntityTypeShape EntityType="SurveyDBModel.tblUserType" Width="1.5" PointX="0.75" PointY="0.5" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblUser_tblAdmin" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblSection_tblClass" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblCompetition_tblUserType" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblCompParticipant_tblCompetition" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblCompParticipant_tblUser" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblCompWinner_tblCompParticipant" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblCompWinner_tblCompParticipant1" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblCompWinner_tblCompParticipant2" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblUser_tblFaculty" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblStudent_tblSection" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblUser_tblStudent" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.875" PointY="0.76582680304094686" />
+          <ConnectorPoint PointX="10.67875" PointY="0.76582680304094686" />
+          <ConnectorPoint PointX="10.67875" PointY="0.76612190483826259" />
+          <ConnectorPoint PointX="8.25" PointY="0.76612190483826259" />
+        </AssociationConnector>
+        <AssociationConnector Association="SurveyDBModel.FK_tblSurvey_tblUserType" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblSurveyQuestion_tblSurvey" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblSurveyResponse_tblSurveyQuestion" />
+        <AssociationConnector Association="SurveyDBModel.FK_tblUser_tblUserType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

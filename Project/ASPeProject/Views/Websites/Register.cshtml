@@ -1,0 +1,229 @@
+﻿@model SurveyProject.tblUser
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <section class="dento-contact-area mt-50 mb-100">
+        <div class="container">
+            <div class="row">
+                <!-- Information -->
+                <div class="col-12 col-md-4">
+                    <div class="contact-information">
+                        <h5>Register</h5>
+                        <p>Select a user type to register yourself as either Student or Staff.</p>
+
+                        <h5>Waiting Period</h5>
+                        <p>
+                            After submission, there will be a short waiting period
+                            after which you will be sent a Username and Password via e-mail.
+                        </p>
+
+                        <h5>Already registered?</h5>
+                        <p>
+                            <a href="~/Websites/Login">Click Here</a> to go to the Login page.
+                        </p>
+
+                        <hr />
+                        <h5>Help</h5>
+                        <p>
+                            If you are having any trouble, feel free to visit the FAQ or Contact Us
+                            if you have any further queries.
+                        </p>
+
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <div class="col-12 col-md-8">
+                    <div class="contact-form">
+                        <!-- Heading -->
+                        <div class="section-heading">
+                            <h2>Register</h2>
+                            <div class="line"></div>
+                        </div>
+
+                        <form>
+                            <div class="row">
+                                <!-- User Type -->
+                                <div class="col-lg-12">
+                                    <label>User Type</label>
+                                    @Html.DropDownList("UserTypeID", null, htmlAttributes: new { @class = "form-control mb-30", id = "ddlUserTypeID" })
+                                </div>
+                            </div>
+
+                            <hr />
+                            <!-- Student Register Page -->
+                            <div class="row" hidden="hidden" id="student">
+                                <!-- Name -->
+                                <div class="col-lg-4">
+                                    <label>Name</label>
+                                    <input type="text" id="StudentName" name="StudentName" class="form-control mb-30" />
+                                </div>
+
+                                <!-- Roll No -->
+                                <div class="col-lg-4">
+                                    <label>Roll No</label>
+                                    <input type="text" id="RollNo" name="RollNo" class="form-control mb-30" />
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-lg-4">
+                                    <label>Email</label>
+                                    <input type="text" id="StudentEmail" name="StudentEmail" class="form-control mb-30" required />
+                                </div>
+
+                                <!-- Class -->
+                                <div class="col-lg-4">
+                                    <label>Class</label>
+                                    <input type="text" placeholder="placeholder" class="form-control mb-30" />
+                                </div>
+
+                                <!-- Section -->
+                                <div class="col-lg-4">
+                                    <label>Section</label>
+                                    <input type="text" placeholder="placeholder" class="form-control mb-30" />
+                                </div>
+
+                                <!-- Admission Date (For students) -->
+                                <div class="col-lg-4">
+                                    <label>Admission Date</label>
+                                    <input type="date" id="AdmissionDate" name="AdmissionDate" class="form-control mb-30" />
+                                </div>
+
+                                <!-- Register Button -->
+                                <div class="col-12">
+                                    <button type="submit" class="btn dento-btn">
+                                        Register
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Faculty Register Page -->
+                            <div class="row" hidden="hidden" id="staff">
+                                <!-- Name -->
+                                <div class="col-lg-4">
+                                    <label>Name</label>
+                                    <input type="text" id="StaffName" name="StaffName" class="form-control mb-30" />
+                                </div>
+
+                                <!-- Employee Number -->
+                                <div class="col-lg-4">
+                                    <label>Employee No.</label>
+                                    <input type="text" id="StaffNo" name="StaffNo" class="form-control mb-30" />
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-lg-4">
+                                    <label>Email</label>
+                                    <input type="text" id="StaffEmail" name="StaffEmail" class="form-control mb-30" />
+                                </div>
+
+                                <!-- Specification -->
+                                <div class="col-lg-8">
+                                    <label>Specification</label>
+                                    <input type="text" class="form-control mb-30" placeholder="This doesn't do anything..." />
+                                </div>
+
+                                <!-- Date of Joining (For faculty and staff) -->
+                                <div class="col-lg-4">
+                                    <label>Date of Joining</label>
+                                    <input type="date" id="JoiningDate" name="JoiningDate" class="form-control mb-30" />
+                                </div>
+
+                                <!-- Register Button -->
+                                <div class="col-12">
+                                    <button type="submit" class="btn dento-btn">
+                                        Register
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<!-- jQuery to manage switching between Student and Staff forms, and manage making fields required or not -->
+<script>
+    $(document).ready(function () {
+        // Fetching the selected value from UserType dropdown.
+        var selectedText = $("#ddlUserTypeID option:selected").text();
+
+        // Checking which UserType is selected in the dropdown on loading the page.
+        if (selectedText == "Student") {
+            $("#student").prop('hidden', false);// Removing student <div>'s default hidden property.
+
+            setStudentRequired(true);           // Require inputs in student form to be filled.
+            setStaffRequired(false);            // Require inputs in Staff <div> to NOT be filled.
+        } else if (selectedText == "Teacher") {
+            $("#staff").prop('hidden', false);  // Removing student <div>'s default hidden property.
+
+            setStaffRequired(true);             // Require inputs in Staff <div> to be filled.
+            setStudentRequired(false);          // Require inputs in student form to NOT be filled.
+        }
+
+    });
+
+    $("#ddlUserTypeID").change(function () {
+        // Fetching the selected value from UserType dropdown.
+        var selectedText = $("#ddlUserTypeID option:selected").text();
+
+        // Fetching the Student and Faculty <div>.
+        var student = $("#student");
+        var staff = $("#staff");
+
+        // If Student is selected...
+        if (selectedText == "Student") {
+            student.prop('hidden', false);  // Show the student <div>.
+            staff.prop('hidden', true);     // Hide the Staff <div>.
+
+            setStudentRequired(true);       // Require inputs in Student <div> to be filled.
+            setStaffRequired(false);        // Do not require inputs in Staff to be filled.
+        }
+        // If Staff is selected...
+        else if (selectedText == "Teacher") {
+            staff.prop('hidden', false);    // Show the Staff <div>.
+            student.prop('hidden', true);   // Hide the Student <div>.
+
+            setStaffRequired(true);         // Require inputs in Staff <div> to be filled.
+            setStudentRequired(false);      // Do not require inputs in Student to be filled.
+        }
+    });
+
+    // Changes the required value of the input fields in Student form.
+    function setStudentRequired(reqValue) {
+        $("#RollNo").prop('required', reqValue);
+        $("#StudentName").prop('required', reqValue);
+        $("#StudentEmail").prop('required', reqValue);
+        $("#AdmissionDate").prop('required', reqValue);
+    }
+
+    // Changes the required value of the input fields in Staff form.
+    function setStaffRequired(reqValue) {
+        $("#StaffNo").prop('required', reqValue);
+        $("#StaffName").prop('required', reqValue);
+        $("#StaffEmail").prop('required', reqValue);
+        $("#JoiningDate").prop('required', reqValue);
+    }
+</script>
+
+@section Banner{
+    <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url(img/bg-img/12.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <h2 class="title">Register</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+}

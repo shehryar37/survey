@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SurveyDBModelStoreContainer" CdmEntityContainer="SurveyDBEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SurveyDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAdmins">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblAdmin">
+        <MappingFragment StoreEntitySet="tblAdmin">
+          <ScalarProperty Name="AdminCreationDate" ColumnName="AdminCreationDate" />
+          <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblClasses">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblClass">
+        <MappingFragment StoreEntitySet="tblClass">
+          <ScalarProperty Name="ClassActive" ColumnName="ClassActive" />
+          <ScalarProperty Name="ReportingDatetime" ColumnName="ReportingDatetime" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCompetitions">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblCompetition">
+        <MappingFragment StoreEntitySet="tblCompetition">
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="CompActive" ColumnName="CompActive" />
+          <ScalarProperty Name="CompDate" ColumnName="CompDate" />
+          <ScalarProperty Name="CompDescription" ColumnName="CompDescription" />
+          <ScalarProperty Name="CompName" ColumnName="CompName" />
+          <ScalarProperty Name="CompID" ColumnName="CompID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCompParticipants">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblCompParticipant">
+        <MappingFragment StoreEntitySet="tblCompParticipant">
+          <ScalarProperty Name="CompParticName" ColumnName="CompParticName" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="CompID" ColumnName="CompID" />
+          <ScalarProperty Name="CompParticID" ColumnName="CompParticID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCompWinners">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblCompWinner">
+        <MappingFragment StoreEntitySet="tblCompWinner">
+          <ScalarProperty Name="ThirdWinner" ColumnName="ThirdWinner" />
+          <ScalarProperty Name="SecondWinner" ColumnName="SecondWinner" />
+          <ScalarProperty Name="FirstWinner" ColumnName="FirstWinner" />
+          <ScalarProperty Name="CompWinID" ColumnName="CompWinID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFaculties">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblFaculty">
+        <MappingFragment StoreEntitySet="tblFaculty">
+          <ScalarProperty Name="FacultyEmail" ColumnName="FacultyEmail" />
+          <ScalarProperty Name="FacultySpecification" ColumnName="FacultySpecification" />
+          <ScalarProperty Name="FacultyActive" ColumnName="FacultyActive" />
+          <ScalarProperty Name="FacultyJoiningDate" ColumnName="FacultyJoiningDate" />
+          <ScalarProperty Name="FacultyGender" ColumnName="FacultyGender" />
+          <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFAQs">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblFAQ">
+        <MappingFragment StoreEntitySet="tblFAQ">
+          <ScalarProperty Name="FAQActive" ColumnName="FAQActive" />
+          <ScalarProperty Name="FAQDateTime" ColumnName="FAQDateTime" />
+          <ScalarProperty Name="FAQAnswer" ColumnName="FAQAnswer" />
+          <ScalarProperty Name="FAQQuestion" ColumnName="FAQQuestion" />
+          <ScalarProperty Name="FAQID" ColumnName="FAQID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSections">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblSection">
+        <MappingFragment StoreEntitySet="tblSection">
+          <ScalarProperty Name="SectionActive" ColumnName="SectionActive" />
+          <ScalarProperty Name="ReportingDateTime" ColumnName="ReportingDateTime" />
+          <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+          <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+          <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStudents">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblStudent">
+        <MappingFragment StoreEntitySet="tblStudent">
+          <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+          <ScalarProperty Name="StudentActive" ColumnName="StudentActive" />
+          <ScalarProperty Name="StudentAdmissionDate" ColumnName="StudentAdmissionDate" />
+          <ScalarProperty Name="StudentGender" ColumnName="StudentGender" />
+          <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSupports">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblSupport">
+        <MappingFragment StoreEntitySet="tblSupport">
+          <ScalarProperty Name="SupportActive" ColumnName="SupportActive" />
+          <ScalarProperty Name="ReportingDateTime" ColumnName="ReportingDateTime" />
+          <ScalarProperty Name="SupportPerson" ColumnName="SupportPerson" />
+          <ScalarProperty Name="SupportAddress" ColumnName="SupportAddress" />
+          <ScalarProperty Name="SupportEmail" ColumnName="SupportEmail" />
+          <ScalarProperty Name="SupportNumber" ColumnName="SupportNumber" />
+          <ScalarProperty Name="SupportID" ColumnName="SupportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSurveys">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblSurvey">
+        <MappingFragment StoreEntitySet="tblSurvey">
+          <ScalarProperty Name="SurveyReportingDateTime" ColumnName="SurveyReportingDateTime" />
+          <ScalarProperty Name="SurveyActive" ColumnName="SurveyActive" />
+          <ScalarProperty Name="SurveyConducts" ColumnName="SurveyConducts" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="SurveyDescription" ColumnName="SurveyDescription" />
+          <ScalarProperty Name="SurveyDueDate" ColumnName="SurveyDueDate" />
+          <ScalarProperty Name="SurveyTitle" ColumnName="SurveyTitle" />
+          <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSurveyQuestions">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblSurveyQuestion">
+        <MappingFragment StoreEntitySet="tblSurveyQuestion">
+          <ScalarProperty Name="SurveyOptions" ColumnName="SurveyOptions" />
+          <ScalarProperty Name="SurveyQuestion" ColumnName="SurveyQuestion" />
+          <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+          <ScalarProperty Name="SurveyQuestionID" ColumnName="SurveyQuestionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSurveyResponses">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblSurveyResponse">
+        <MappingFragment StoreEntitySet="tblSurveyResponse">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="QuestionResponse" ColumnName="QuestionResponse" />
+          <ScalarProperty Name="SurveyQuestionID" ColumnName="SurveyQuestionID" />
+          <ScalarProperty Name="SurveyResponseID" ColumnName="SurveyResponseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="UserReqRejectReason" ColumnName="UserReqRejectReason" />
+          <ScalarProperty Name="UserRegStatus" ColumnName="UserRegStatus" />
+          <ScalarProperty Name="UserActive" ColumnName="UserActive" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="UserRequestDate" ColumnName="UserRequestDate" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+          <ScalarProperty Name="StaffNo" ColumnName="StaffNo" />
+          <ScalarProperty Name="AdminNo" ColumnName="AdminNo" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserTypes">
+      <EntityTypeMapping TypeName="SurveyDBModel.tblUserType">
+        <MappingFragment StoreEntitySet="tblUserType">
+          <ScalarProperty Name="UserTypeKeyword" ColumnName="UserTypeKeyword" />
+          <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

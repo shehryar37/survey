@@ -1,0 +1,13 @@
+﻿body {
+
+}
+
+html {
+    margin: auto;
+}
+
+/* The central card in the log-in page. */
+.mainCard-User_Asim {
+    max-width: 35em;
+    margin: 5em auto 5em auto;
+}
